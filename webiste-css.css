@@ -25,6 +25,7 @@ th {
 thead, tbody {
     background-color: #41374b;
     padding: 15px;
+    border-spacing: 0px;
     text-align: left;
     border-bottom: #ddd;
   }
@@ -34,6 +35,7 @@ thead, tbody {
   table {
     border-radius: 100px;
     padding: 40px;
+    border-spacing: 0px;
     border: 0px;
     border-collapse: collapse;
   }
