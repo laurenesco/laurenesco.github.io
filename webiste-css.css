@@ -1,10 +1,13 @@
+html{
+    background-color: #2a2733;
+}
+
 body {
-  background-color: #2a2733;
   letter-spacing: 1px;
   line-height: 1.5;
   overflow-wrap: break-word;
   text-align: center;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
   <!-- helvetica and segoe are good fonts -->
   text-align: center;
   color: rgb(215, 210, 210);
