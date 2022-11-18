@@ -1,7 +1,9 @@
+/* form styling */
 html{
     background-color: #2a2733;
 }
 
+/* header/body styling */
 body {
   letter-spacing: 1px;
   line-height: 1.5;
@@ -11,18 +13,23 @@ body {
   <!-- helvetica and segoe are good fonts -->
   text-align: center;
   color: rgb(215, 210, 210);
+  
 }
 
 h1{
-  margin-top: 200px;
+  margin-top: 150px;
 }
 
-th {
-    background-color: #41374b;
-    color: rgb(255, 238, 5);
+/* table styling */
+
+table {
+    border-radius: 10%;
+    border-spacing: 0px;
+    border: 0px;
+    border-collapse: collapse;
   }
 
-thead, tbody {
+  thead, tbody {
     background-color: #41374b;
     padding: 15px;
     border-spacing: 0px;
@@ -30,17 +37,17 @@ thead, tbody {
     border-bottom: #ddd;
   }
 
+th {
+    background-color: #2e2735;
+    color: rgb(255, 238, 5);
+  }
+
   tr, td {
     height: 80px;
     padding: 15px;
     border-spacing: 0px;
+    color:rgb(255, 30, 5)
   }
 
   tr:nth-child(even) {background-color: #2a2733;} 
 
-  table {
-    border-radius: 100px;
-    border-spacing: 0px;
-    border: 0px;
-    border-collapse: collapse;
-  }
