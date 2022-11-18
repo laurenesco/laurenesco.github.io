@@ -27,6 +27,7 @@ table {
     border-spacing: 0px;
     border: 0px;
     border-collapse: collapse;
+    align-self: center;
   }
 
   thead, tbody {
@@ -39,14 +40,14 @@ table {
 
 th {
     background-color: #2e2735;
-    color: rgb(255, 238, 5);
+    color: darkgoldenrod;
   }
 
   tr, td {
     height: 80px;
     padding: 15px;
     border-spacing: 0px;
-    color:rgb(255, 30, 5)
+    color: crimson;
   }
 
   tr:nth-child(even) {background-color: #2a2733;} 
