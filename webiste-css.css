@@ -15,19 +15,6 @@ body {
   color: rgb(215, 210, 210);
 }
 
-.container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    padding: 40px;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0,0,0,.5);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    border-radius: 10px;
-}
-
 h1{
   margin-top: 100px;
 }
@@ -68,3 +55,161 @@ th {
 
   tr:nth-child(even) {background-color: #2a2733;} 
 
+/* super cool css studd */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+.container h2  {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #78518e;
+    text-align: center;
+    }
+
+.container .user {
+    position: relative;
+}
+
+.container .user input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: lightgrey;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+.container .user label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.container .user input:focus ~ label,
+.container .user input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: fuchsia;
+    font-size: 12px;
+}
+
+.container form {
+    position: relative;
+    display: inline-block;
+    padding: 10px, 20px;
+    color: fuchsia;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+}
+
+.container a:hover {
+    background: fuchsia;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px fuchsia,
+                0 0 25px fuchsia,
+                0 0 50px fuchsia,
+                0 0 100px fuchsia,
+}
+
+.container a span {
+    position: absolute;
+    display: block;
+}
+
+.container a span:nth-child(1) {
+    top: 0;
+    left: -100;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, fuchsia);
+    animation: btn-animated 1s linear infinite;
+}
+
+@keyframes btn-animated {
+    0% { 
+        left: -100%
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+
+.container a span:nth-child(2) {
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, fuchsia);
+    animation: btn-animated2 1s linear infinite;
+    animation-delay: .25s;
+}
+
+@keyframes btn-animated2 {
+    0% { 
+        top: -100%
+    }
+    50%, 100% {
+        top: 100%;
+    }
+}
+
+.container a span:nth-child(3) {
+    right: -100%;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(270deg, transparent, fuchsia);
+    animation: btn-animated3 1s linear infinite;
+    animation-delay: .5s;
+}
+
+@keyframes btn-animated3 {
+    0% { 
+        top: -100%
+    }
+    50%, 100% {
+        top: 100%;
+    }
+}
+
+.container a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(270deg, transparent, fuchsia);
+    animation: btn-animated4 1s linear infinite;
+    animation-delay: .75s;
+}
+
+@keyframes btn-animated4 {
+    0% { 
+        top: -100%
+    }
+    50%, 100% {
+        top: 100%;
+    }
+}
