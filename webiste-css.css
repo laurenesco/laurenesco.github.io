@@ -3,7 +3,7 @@
 
 /* form styling */
 html{
-    background: linear-gradient(#000000, darkorchid);
+    background: linear-gradient(45deg, #000000, darkorchid, 70%);
     font-family: 'Open Sans', sans-serif;
 }
 
