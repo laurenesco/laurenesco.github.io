@@ -40,14 +40,18 @@ table {
 
 th {
     background-color: #2e2735;
-    color: darkgoldenrod;
+    color: darkorange;
   }
 
   tr, td {
     height: 80px;
     padding: 15px;
     border-spacing: 0px;
-    color: crimson;
+    color: darkgoldenrod;
+  }
+
+  td {
+    margin-left: 5%;
   }
 
   tr:nth-child(even) {background-color: #2a2733;} 
