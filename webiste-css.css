@@ -1,30 +1,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
- 
 
-/* form styling */
 html{
-    background: linear-gradient(45deg, #000000, darkorchid, 70%);
     font-family: 'Open Sans', sans-serif;
 }
 
-/* header/body styling */
-body {
-  letter-spacing: 1px;
-  line-height: 1.5;
-  overflow-wrap: break-word;
-  text-align: center;
-  font-family: sans-serif;
-  <!-- helvetica and segoe are good fonts -->
-  text-align: center;
-  color: rgb(215, 210, 210);
+ box {
+ display:inline-block;
+ width:100px;
+ height:100px;
+ background-color:#FFFFFF;
+ border: none;
+ border-radius: 10%
 }
+ 
+body {
+   background: #000123;
+     letter-spacing: 1px;
+   line-height: 1.5;
+   overflow-wrap: break-word;
+   text-align: center;
+   font-family: 'Open Sans', sans-serif;
+   <!-- helvetica and segoe are good fonts -->
+   text-align: center;
+ text-vertical-align: center;
+   color: rgb(215, 210, 210);
+   margin-bottom: 100px;
+}
+ 
+ .button {
+ color: rgba(5, 217, 232, 1)
+text-decoration: none;
+color: rgba(209, 247, 255, .5);
+background: rgba(0, 86, 120, .4);
+padding: 10px 10px;
+border-radius: 8px;
+font-weight: normal;
+ font-size: 8pt;
+/* text-transform: uppercase; */
+transition: all 0.4s ease-in-out;
+ vertical-align: center;
+ margin-left: 50px;
+ margin-right: 50px;
+
+}
+ 
+ .glow-button:hover {
+color: #000000;
+ background: rgba(209, 247, 255, .8);
+ /* offset-x | offset-y | blur-radius | spread-radius | color */
+box-shadow: 0px 0px 50px 10px rgba(5, 217, 232, 1);
+}
+ 
+ .container {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ justify-content: space-around;
+ align-items: baseline
+ align-content: space-around;
+ gap: 10px 100px;
+ }
+ 
+ .item {
+ flex-basis: auto;
+ }
 
 h1{
     margin-top: 100px;
     align: center;
+    letter-spacing: 2.5px;
 }
-
-/* table styling */
+ 
+ .title {
+ margin-left: 160px;
+ margin-right: 160px;
+   color: rgba(255, 255, 255, 1);
+ text-shadow: 0px 0px 60px 10px rgba(5, 217, 232, 1);
+   transition: all 0.1s ease-in-out;
+ }
 
 table {
     border-radius: 10%;
@@ -58,6 +111,6 @@ th {
     margin-left: 5%;
   }
 
-  tr:nth-child(even) {background-color: #2a2733;} 
-
-/* super cool css studd */
+  tr:nth-child(even) {
+     background-color: #2a2733;
+  } 
