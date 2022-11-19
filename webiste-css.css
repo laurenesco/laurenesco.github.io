@@ -14,84 +14,87 @@ html{
  border-radius: 0%;
 }
  
+    
 body {
-   background: rgba(0, 0, 0, 1);
-   letter-spacing: 1px;
-   line-height: 1.5;
-   overflow-wrap: break-word;
-   text-align: center;
-   font-family: 'Open Sans', sans-serif;
-   <!-- helvetica and segoe are good fonts -->
-   text-align: center;
-   text-vertical-align: center;
-   color: rgb(215, 210, 210);
-   margin-bottom: 100px;
+    background: rgba(0, 0, 0, 1);
+    background-image: radial-gradient rgba(0, 0, 0, 1);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    <!-- helvetica and segoe are good fonts -->
+    text-align: center;
+    text-vertical-align: center;
+    color: rgb(215, 210, 210);
+    margin-bottom: 100px;
+ }
+  
+  .button1 {
+text-decoration: none;
+  font-family: 'Almarai', sans-serif;
+color: rgba(0, 0, 0, 1);
+background: rgba(184, 99, 0, 1);
+padding: 25px 10px;
+border-radius: 3px;
+font-weight: normal; 
+  font-size: 12pt;
+ text-transform: uppercase; 
+transition: all 0.4s ease-in-out;
+  vertical-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
 }
- 
-.button1 {
-    text-decoration: none;
-      font-family: 'Almarai', sans-serif;
-    color: rgba(0, 0, 0, 1);
-    background: rgba(184, 99, 0, 1);
-    padding: 25px 10px;
-    border-radius: 3px;
-    font-weight: normal; 
-      font-size: 12pt;
-     text-transform: uppercase; 
-    transition: all 0.4s ease-in-out;
-      vertical-align: center;
-      margin-left: 50px;
-      margin-right: 50px;
-  }
-      
-          .button2 {
-    text-decoration: none;
-      font-family: 'Almarai', sans-serif;
-    color: rgba(184, 99, 0, 1);
-    background: rgba(170, 40, 40, 1);
-    padding: 25px 10px;
-    border-radius: 3px;
-    font-weight: normal; 
-      font-size: 12pt;
-    /* text-transform: uppercase; */
-    transition: all 0.4s ease-in-out;
-      vertical-align: center;
-      margin-left: 50px;
-      margin-right: 50px;
-      margin-top: px;
-  }
-      
-          .button3 {
-    text-decoration: none;
-      font-family: 'Almarai', sans-serif;
-    color: rgba(184, 99, 0, 1);
-    background: rgba(120, 152, 95, 1);
-    padding: 25px 10px;
-    border-radius: 3px;
-    font-weight: normal; 
-      font-size: 12pt;
-     text-transform: uppercase; 
-    transition: all 0.4s ease-in-out;
-      vertical-align: center;
-      margin-left: 50px;
-      margin-right: 50px;
-  }
-      
-          .button4 {
-    text-decoration: none;
-      font-family: 'Almarai', sans-serif;
-    color: rgba(184, 99, 0, 1);
-    background: rgba(0, 86, 120, .4);
-    padding: 25px 10px;
-    border-radius: 3px;
-    font-weight: normal; 
-      font-size: 12pt;
-    /* text-transform: uppercase; */
-    transition: all 0.4s ease-in-out;
-      vertical-align: center;
-      margin-left: 50px;
-      margin-right: 50px;
-      margin-top: 40px;
+  
+      .button3 {
+text-decoration: none;
+  font-family: 'Almarai', sans-serif;
+color: rgba(184, 99, 0, 1);
+background: rgba(170, 40, 40, 1);
+padding: 25px 10px;
+border-radius: 3px;
+font-weight: normal; 
+  font-size: 12pt;
+/* text-transform: uppercase; */
+transition: all 0.4s ease-in-out;
+  vertical-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10%;
+}
+  
+      .button2 {
+text-decoration: none;
+  font-family: 'Almarai', sans-serif;
+color: rgba(184, 99, 0, 1);
+background: rgba(120, 152, 95, 1);
+padding: 25px 10px;
+border-radius: 3px;
+font-weight: normal; 
+  font-size: 12pt;
+ text-transform: uppercase; 
+transition: all 0.4s ease-in-out;
+  vertical-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+      margin-top: 10%;
+}
+  
+      .button4 {
+text-decoration: none;
+  font-family: 'Almarai', sans-serif;
+color: rgba(184, 99, 0, 1);
+background: rgba(0, 86, 120, .4);
+padding: 25px 10px;
+border-radius: 3px;
+font-weight: normal; 
+  font-size: 12pt;
+/* text-transform: uppercase; */
+transition: all 0.4s ease-in-out;
+  vertical-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10%;
   }
  
  .glow-button:hover {
