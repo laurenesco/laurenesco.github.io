@@ -206,6 +206,13 @@ td {
     background: black;
 }
 
+td:hover {
+    color: #000000;
+    background: rgba(162, 154, 197, 1);
+    height: 0px;
+    width: 250px;
+}
+
 tr:nth-child(even) {
     background-color: #2a2733;
 } 
