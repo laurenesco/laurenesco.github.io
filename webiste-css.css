@@ -93,8 +93,8 @@ body {
     background: rgba(170, 40, 40, 1);
     /* offset-x | offset-y | blur-radius | spread-radius | color */
     box-shadow: inset 0px 0px 40px 10px rgba(0, 0, 0, .3);
-    height: 30px;
-    width: 225px;
+    height: 0px;
+    width: 250px;
     text-align: center;
 }
 .glow-button2:hover {
@@ -102,8 +102,8 @@ body {
     background: rgba(162, 154, 197, 1);
     /* offset-x | offset-y | blur-radius | spread-radius | color */
     box-shadow: inset 0px 0px 40px 10px rgba(0, 0, 0, .3);
-    height: 30px;
-    width: 225px;
+    height: 0px;
+    width: 250px;
     text-align: center;
 }
 .glow-button3:hover {
@@ -111,8 +111,8 @@ body {
     background: rgba(184, 99, 0, 1);
     /* offset-x | offset-y | blur-radius | spread-radius | color */
     box-shadow: inset 0px 0px 40px 10px rgba(0, 0, 0, .3);
-    height: 30px;
-    width: 225px;
+    height: 0px;
+    width: 250px;
     text-align: center;
 }
 .glow-button4:hover {
@@ -120,8 +120,8 @@ body {
     background: rgba(120, 152, 95, 1);
     /* offset-x | offset-y | blur-radius | spread-radius | color */
     box-shadow: inset 0px 0px 40px 10px rgba(0, 0, 0, .3);
-    height: 30px;
-    width: 225px;
+    height: 0px;
+    width: 250px;
     text-align: center;
 }
 
@@ -164,6 +164,7 @@ h1{
     font-family: 'Open Sans', sans-serif;
     font-size: 35pt;
     letter-spacing: 4px;
+    color: aliceblue;
 }
 
 .title {
@@ -176,7 +177,6 @@ h1{
 
 table {
     border-radius: 10%;
-    border-spacing: 0px;
     border: 0px;
     border-collapse: collapse;
     align-self: center;
@@ -185,8 +185,6 @@ table {
 thead, tbody {
     background-color: #41374b;
     padding: 15px;
-    border-spacing: 0px;
-    text-align: left;
     border-bottom: #ddd;
 }
 
@@ -199,11 +197,13 @@ tr, td {
     height: 80px;
     padding: 15px;
     border-spacing: 0px;
-    color: darkgoldenrod;
 }
 
 td {
-    margin-left: 5%;
+    width: 155px;
+    text-align: center;
+    color: darkgrey;
+    background: black;
 }
 
 tr:nth-child(even) {
