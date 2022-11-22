@@ -184,22 +184,32 @@ h1{
 
 .nav1:hover {
     background-color: #fc543a;
+    height: 0px;
+    width: 213px;
 }
 
 .nav2:hover {
     background-color: #ff9566;
+    height: 0px;
+    width: 213px;
 }
 
 .nav3:hover {
     background-color: #ffd966;
+    height: 0px;
+    width: 213px;
 }
 
 .nav4:hover {
     background-color: #93c47d;
+    height: 0px;
+    width: 213px;
 }
 
 .nav5:hover {
-    background-color: #6fa8dc	;
+    background-color: #6fa8dc;
+    height: 0px;
+    width: 213px;
 }
 
 table {
@@ -232,14 +242,6 @@ td {
     color: black;
     background: white;
     transition: all 0.3s ease-in-out;
-}
-
-td:hover {
-    color: #000000;
-    background: rgb(233,233,233);
-    height: 0px;
-    width: 213px;
-    box-shadow: inset 0px 0px 10px 0px rgb(211 211 211);
 }
 
 tr:nth-child(even) {
