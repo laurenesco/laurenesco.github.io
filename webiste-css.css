@@ -244,3 +244,13 @@ td {
     transition: all 0.3s ease-in-out;
     text-align: left;
 }
+
+.name {
+    width: 40%;
+    text-align: left;
+}
+
+.desc {
+    width: 60%;
+    text-align: center;
+}
