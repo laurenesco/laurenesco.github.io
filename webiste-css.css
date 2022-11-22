@@ -178,6 +178,10 @@ h1{
     transition: all 0.1s ease-in-out;
 }
 
+.infotable {
+    margin-top: 100px;
+}
+
 table {
     border-radius: 10%;
     border: 0px;
