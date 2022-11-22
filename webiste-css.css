@@ -223,6 +223,7 @@ thead {
     color: black;
     padding: 15px;
     font-weight: bold;
+    text-align: left;
 }
 
 tr, td {
