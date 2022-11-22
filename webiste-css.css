@@ -179,7 +179,7 @@ h1{
 }
 
 .infotable {
-    margin-top: 100px;
+    margin-top: 200px;
 }
 
 .nav1:hover {
@@ -237,7 +237,7 @@ tr, td {
 }
 
 td {
-    width: 213px;
+    width: 265px;
     text-align: center;
     color: black;
     background: white;
