@@ -180,6 +180,7 @@ h1{
 
 .infotable {
     margin-top: 96px;
+    margin-right: 30px;
 }
 
 .nav1 {
@@ -253,7 +254,7 @@ tr, td {
 
 td {
     width: 265px;
-    text-align: left;
+    text-align: center;
     color: black;
     background: white;
     transition: all 0.3s ease-in-out;
