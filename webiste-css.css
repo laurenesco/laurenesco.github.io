@@ -185,31 +185,31 @@ h1{
 .nav1:hover {
     background-color: #fc543a;
     height: 0px;
-    width: 213px;
+    width: 265px;
 }
 
 .nav2:hover {
     background-color: #ff9566;
     height: 0px;
-    width: 213px;
+    width: 265px;
 }
 
 .nav3:hover {
     background-color: #ffd966;
     height: 0px;
-    width: 213px;
+    width: 265px;
 }
 
 .nav4:hover {
     background-color: #93c47d;
     height: 0px;
-    width: 213px;
+    width: 265px;
 }
 
 .nav5:hover {
     background-color: #6fa8dc;
     height: 0px;
-    width: 213px;
+    width: 265px;
 }
 
 table {
@@ -219,15 +219,10 @@ table {
     align-self: center;
 }
 
-thead, tbody {
-    background-color: #41374b;
+thead {
+    color: black;
     padding: 15px;
-    border-bottom: #ddd;
-}
-
-th {
-    background-color: #2e2735;
-    color: white;
+    font-weight: bold;
 }
 
 tr, td {
@@ -243,7 +238,3 @@ td {
     background: white;
     transition: all 0.3s ease-in-out;
 }
-
-tr:nth-child(even) {
-    background-color: #2a2733;
-} 
