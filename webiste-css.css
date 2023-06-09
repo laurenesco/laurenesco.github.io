@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round&family=Open+Sans:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap');
 
+.alternate {
+    background-color: #D3D3D3;
+  }
+
+  .alternate-odd {
+    background-color: #a37fde;
+  }
+
 box {
     display:inline-grid;
     width:243px;
@@ -246,7 +254,14 @@ th {
     padding-left: 50px;
 }
 
-tr, td {
+.navbar {
+    height: 80px;
+    padding: 15px;
+    border-spacing: 0px;
+}
+
+table.custom-table tr, 
+table.custom-table td {
     height: 80px;
     padding: 15px;
     border-spacing: 0px;
@@ -256,7 +271,6 @@ td {
     width: 265px;
     text-align: center;
     color: black;
-    background: white;
     transition: all 0.3s ease-in-out;
     text-align: left;
 }

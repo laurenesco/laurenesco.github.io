@@ -6,19 +6,19 @@
 
 <table> 
     <tr>
-        <td class="nav1">
+        <td class="nav1 navbar">
             Home
         </td>
-        <td class="nav2">
+        <td class="nav2 navbar">
             Applications
         </td>
-        <td class="nav3">
+        <td class="nav3 navbar">
             Projects
         </td>
-        <td class="nav4">
+        <td class="nav4 navbar">
             Skills
         </td>
-        <td class="nav5">
+        <td class="nav5 navbar">
             About
         </td>
     </tr>
@@ -32,46 +32,81 @@
             <br><br><br>
         </div>
         <div style="width:55%; height: 500px; float:left;">
-            <table class="infotable"> 
+            <table class="infotable sortable"> 
                 <thead>
-                    <th>
-                    Highlights
-                    </th>
+                    <tr>
+                        <th class="sortable">
+                            Highlights
+                        </th>
+                        <th class="sortable">
+                            Description
+                        </th>
+                        <th class="sortable-numeric"> 
+                            Numbers
+                        </th>
+                        <th class="sortable-date">
+                            Date
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="name">
+                        <td>
                             Inventory Management Application 
                         </td>
-                        <td class="desc"> 
+                        <td> 
                             A database driven application written in C++ capable of detailed tracking of inventory items
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            05-AUG-20
                         </td>
                     </tr>
                     <tr>
-                        <td class="name" >
+                        <td>
                             Hotel Management Application
                         </td>
-                        <td class="desc">
+                        <td>
                             A enterprise scale application written in C# capable of managing employees, customers,
                             hotel locations, rooms, transactions, reservations, and more
                         </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            07-JUN-19
+                        </td>
                     </tr>
                     <tr>
-                        <td class="name" >
+                        <td>
                             Drone Swarm Project
                         </td>
-                        <td class="desc">
+                        <td>
                             Research aimed at developing software to better integrate a CrazySwarm with 
                             Vicon motion tracking technology
                         </td>
+                        <td>
+                            5
+                        </td>
+                        <td>
+                            05-AUG-22
+                        </td>
                     </tr>
                     <tr>
-                        <td class="name" >
+                        <td>
                             Research
                         </td>
-                        <td class="desc"> 
+                        <td> 
                             The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust articles reviewed
                             and data compiled into one survey. Published 2022
+                        </td>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            05-AUG-23
                         </td>
                     </tr>
                     </tbody>
@@ -81,5 +116,6 @@
     <div style="width: 100%; text-align: center;">
         Contact Me
     </div>
+    <script src="sortable-tables.js"></script>
 </body>
 </html>
