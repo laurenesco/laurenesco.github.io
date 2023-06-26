@@ -22,7 +22,7 @@ function sortTable(event) {
       if (event.target.classList.contains("sortable-date")) {
         const dateA = new Date(cellA);
         const dateB = new Date(cellB);
-        result = dateA - dateB;
+        result = dateB - dateA;
       } else if (event.target.classList.contains("sortable-numeric")) {
         const numberA = parseFloat(cellA);
         const numberB = parseFloat(cellB);
@@ -42,7 +42,7 @@ function sortTable(event) {
 
   // Apply alternating row colors
   applyAlternatingRowColors(table);
-  }
+}
 
 // Function to apply alternating row colors
 function applyAlternatingRowColors(table) {
@@ -58,21 +58,32 @@ function applyAlternatingRowColors(table) {
         row.classList.add(alternateClass);
       }
     });
-  }
+}
   
-  
-  // Add click event listener to all sortable tables
-  const sortableTables = document.querySelectorAll(".sortable");
-  
-  sortableTables.forEach(table => {
-    const headers = table.querySelectorAll("th");
-  
-    // Add click event listener to each table header
-    headers.forEach(header => {
-      header.addEventListener("click", sortTable);
-      header.style.cursor = "pointer"; // Change cursor to indicate sortable header
-    });
+// Find tables with class "sortable-onload-N" and sort by the specified column on load
+const sortableTables = document.querySelectorAll("table[class*='sortable-onload-']");
 
-      // Apply initial alternating row colors
-        applyAlternatingRowColors(table); 
+sortableTables.forEach(table => {
+  const headers = table.querySelectorAll("th");
+
+  // Get the column index from the class name
+  const classIndex = table.className.lastIndexOf("-") + 1;
+  const column = parseInt(table.className.substring(classIndex), 10);
+
+  // Add click event listener to each table header
+  headers.forEach(header => {
+    header.addEventListener("click", sortTable);
+    header.style.cursor = "pointer"; // Change cursor to indicate sortable header
   });
+
+  // Trigger the sorting based on the column index
+  const headerToSort = headers[column];
+  if (headerToSort) {
+    // Set the initial sorting order to "asc" for the header to be sorted on load
+    headerToSort.dataset.sortOrder = "desc";
+    sortTable({ target: headerToSort }); // Manually trigger the sorting function
+  }
+
+  // Apply initial alternating row colors
+  applyAlternatingRowColors(table);
+});
