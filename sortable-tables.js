@@ -8,7 +8,7 @@ function sortTable(event) {
   const column = Array.from(event.target.parentNode.children).indexOf(event.target);
 
   // Get the current sorting order of the column
-  const currentSortOrder = event.target.dataset.sortOrder || "asc";
+  const currentSortOrder = event.target.dataset.sortOrder || "desc";
   const sortOrder = currentSortOrder === "asc" ? "desc" : "asc";
   event.target.dataset.sortOrder = sortOrder;
 
@@ -33,6 +33,16 @@ function sortTable(event) {
 
     return sortOrder === "asc" ? result : -result;
   });
+
+  // Remove existing arrow
+  const headers = table.querySelectorAll("th");
+  headers.forEach(header => {
+    header.textContent = header.textContent.replace(/\u2191|\u2193/g, '').trim();
+  });
+
+  // Add new arrow 
+  const sortOrderArrow = sortOrder === "asc" ? " \u2191" : " \u2193";
+  event.target.textContent = event.target.textContent.trim() + sortOrderArrow;
 
   // Remove and reappend rows in the table
   rows.forEach(row => tbody.removeChild(row));
@@ -78,14 +88,18 @@ sortableTables.forEach(table => {
     // Add click event listener to each table header
     headers.forEach(header => {
       header.addEventListener("click", sortTable);
-      header.style.cursor = "pointer"; // Change cursor to indicate sortable header
+      if (header.textContent.trim() !== "") {
+        header.style.cursor = "pointer"; 
+        header.style.textDecoration = "underline";
+        header.style.color = "#006699";
+      }
     });
 //debugger;
     // Trigger the sorting based on the column index
     const headerToSort = headers[column];
     if (headerToSort) {
       // Set the initial sorting order to "asc" for the header to be sorted on load
-      headerToSort.dataset.sortOrder = "desc";
+      headerToSort.dataset.sortOrder = table.classList.contains("descending") ? "asc" : "desc";
       sortTable({ target: headerToSort }); // Manually trigger the sorting function
     }
   }
