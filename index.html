@@ -1,38 +1,64 @@
 <html>
-<link rel="stylesheet" type="text/css" href="webiste-css.css"/> 
+
 <head>
+    <link rel="stylesheet" type="text/css" href="webiste-css.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
+
 <body>
 
-<table> 
-    <tr>
-        <td class="nav1 navbar">
-            Home
-        </td>
-        <td class="nav2 navbar">
-            Applications
-        </td>
-        <td class="nav3 navbar">
-            Projects
-        </td>
-        <td class="nav4 navbar">
-            Skills
-        </td>
-        <td class="nav5 navbar">
-            About
-        </td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <td class="nav1 navbar">
+                Home
+            </td>
+            <td class="nav2 navbar">
+                Applications
+            </td>
+            <td class="nav3 navbar">
+                Projects
+            </td>
+            <td class="nav4 navbar">
+                Skills
+            </td>
+            <td class="nav5 navbar">
+                About
+            </td>
+        </tr>
+    </table>
     <div style="width: 100%; height: 700px;">
-        <div style="width: 45%; height: 500px; float:left;">
+        <div style="width: 45%; height: auto; float:left; overflow: hidden;">
             <br><br>
             <h1>
-                <p class="title">  </p> Lauren<br>Escobedo
-            </h1> 
+                <p class="title"> </p> Lauren<br>Escobedo
+            </h1>
             <br><br><br>
+            <div class="swiper-container" style="height: 310px">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="images\cat1.jpg" alt="Cat 1" style="max-width: 80%; height: 300px;">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images\cat2.jpg" alt="Cat 1" style="max-width: 80%; height: 300px;">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images\cat3.jpg" alt="Cat 1" style="max-width: 80%; height: 300px;">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="prev-arrow" style="background: transparent; border: none;">&#9664;</button>
+                <button class="next-arrow" style="background: transparent; border: none;">&#9654;</button>
+            </div>
+
+            <div style="width: 100%; text-align: center;">
+                <br><br><a style="color: black" href="https://outlook.office.com/?path=/mail/action/compose&to=lescobedo4@mail.stmarytx.edu&subject=subject&body=body">
+                    Contact Me
+                </a>
+            </div>
         </div>
-        <div style="width:55%; height: 500px; float:left;">
-            <table class="sortable-onload-0-2 rowstyle-alternateRow"> 
+        <div style="width:55%; height: 500px; float:right;">
+            <table class="sortable-onload-0-2 rowstyle-alternateRow">
                 <thead>
                     <tr>
                         <th class="sortable">
@@ -41,7 +67,7 @@
                         <th class="sortable">
                             Description
                         </th>
-                        <th class="sortable-numeric"> 
+                        <th class="sortable-numeric">
                             Numbers
                         </th>
                         <th class="sortable-date">
@@ -52,9 +78,9 @@
                 <tbody>
                     <tr>
                         <td>
-                            Inventory Management Application 
+                            Inventory Management Application
                         </td>
-                        <td> 
+                        <td>
                             A database driven application written in C++ capable of detailed tracking of inventory items
                         </td>
                         <td>
@@ -84,7 +110,7 @@
                             Drone Swarm Project
                         </td>
                         <td>
-                            Research aimed at developing software to better integrate a CrazySwarm with 
+                            Research aimed at developing software to better integrate a CrazySwarm with
                             Vicon motion tracking technology
                         </td>
                         <td>
@@ -98,8 +124,9 @@
                         <td>
                             Research
                         </td>
-                        <td> 
-                            The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust articles reviewed
+                        <td>
+                            The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust
+                            articles reviewed
                             and data compiled into one survey. Published 2022
                         </td>
                         <td>
@@ -113,8 +140,9 @@
                         <td>
                             Research
                         </td>
-                        <td> 
-                            The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust articles reviewed
+                        <td>
+                            The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust
+                            articles reviewed
                             and data compiled into one survey. Published 2022
                         </td>
                         <td>
@@ -128,8 +156,9 @@
                         <td>
                             Research
                         </td>
-                        <td> 
-                            The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust articles reviewed
+                        <td>
+                            The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust
+                            articles reviewed
                             and data compiled into one survey. Published 2022
                         </td>
                         <td>
@@ -139,13 +168,12 @@
                             05-AUG-23
                         </td>
                     </tr>
-                    </tbody>
+                </tbody>
             </table>
         </div>
     </div>
-    <div style="width: 100%; text-align: center;">
-        Contact Me
-    </div>
     <script src="sortable-tables.js"></script>
+    <script src="image-slideshow.js"></script>
 </body>
+
 </html>
