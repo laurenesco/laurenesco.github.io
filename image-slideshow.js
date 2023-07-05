@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // 
 // Program Name:          image-slideshow.js
 // Date Last Modified:    07/04/2023
