@@ -1,7 +1,16 @@
 // Function to sort the table data
-function sortTable(event) {
+function sortTable(target) {
+  let table;
+
+  if (target instanceof Event) {
+    // Event case: Retrieve table from event target
+    table = target.target.closest("table");
+  } else {
+    // Parameter case: Use the provided table directly
+    table = target;
+  }
+
   // Retrieve table elements
-  const table = event.target.closest("table");
   const tbody = table.querySelector("tbody");
   const rows = Array.from(tbody.querySelectorAll("tr"));
 
@@ -14,10 +23,13 @@ function sortTable(event) {
                                      .filter(index => index !== "")
                                      .map(index => parseInt(index));
 
-  // Determine the sorting order of the column
-  const currentSortOrder = event.target.dataset.sortOrder || "desc";
-  const sortOrder = currentSortOrder === "asc" ? "desc" : "asc";
-  event.target.dataset.sortOrder = sortOrder;
+// Determine the sorting order of the column
+const sortOrderElement = table.querySelector("[data-sort-order]");
+const currentSortOrder = sortOrderElement ? sortOrderElement.dataset.sortOrder : "desc";
+const sortOrder = currentSortOrder === "asc" ? "desc" : "asc";
+if (sortOrderElement) {
+  sortOrderElement.dataset.sortOrder = sortOrder;
+}
 
   // Sort the rows based on the content of the selected column
   rows.sort((a, b) => {
@@ -25,11 +37,11 @@ function sortTable(event) {
     const cellB = b.querySelectorAll("td")[columnIndices[0]].textContent.trim();
     let result;
 
-    if (event.target.classList.contains("sortable-date")) { // Date sort
+    if (table.querySelector(".sortable-date")) { // Date sort
       const dateA = new Date(cellA);
       const dateB = new Date(cellB);
       result = dateB - dateA;
-    } else if (event.target.classList.contains("sortable-numeric")) { // Numeric sort
+    } else if (table.querySelector(".sortable-numeric")) { // Numeric sort
       const numberA = parseFloat(cellA);
       const numberB = parseFloat(cellB);
       result = numberA - numberB;
@@ -43,11 +55,11 @@ function sortTable(event) {
       const secondCellA = a.querySelectorAll("td")[secondColumn].textContent.trim();
       const secondCellB = b.querySelectorAll("td")[secondColumn].textContent.trim();
 
-      if (event.target.classList.contains("sortable-date")) { // Date sort
+      if (table.querySelector(".sortable-date")) { // Date sort
         const dateA = new Date(secondCellA);
         const dateB = new Date(secondCellB);
         result = dateB - dateA;
-      } else if (event.target.classList.contains("sortable-numeric")) { // Numeric sort
+      } else if (table.querySelector(".sortable-numeric")) { // Numeric sort
         const numberA = parseFloat(secondCellA);
         const numberB = parseFloat(secondCellB);
         result = numberA - numberB;
@@ -60,8 +72,7 @@ function sortTable(event) {
   });
 
   // Apply sort direction arrow
-  const headers = table.querySelectorAll("th");
-  applySortArrow(headers, sortOrder, event.target);
+  applySortArrow(table, sortOrder, columnIndices[0]);
 
   // Remove and reappend rows in the table
   rows.forEach(row => tbody.removeChild(row));
@@ -72,14 +83,17 @@ function sortTable(event) {
 }
 
 // Function to apply sort direction arrow to headers
-function applySortArrow(headers, sortOrder, eventTarget) {
-  headers.forEach(header => {
+function applySortArrow(table, sortOrder, columnIndex) {
+  const headers = table.querySelectorAll("th");
+  headers.forEach((header, index) => {
+    // Remove old arrow
     header.textContent = header.textContent.replace(/\u2191|\u2193/g, '').trim();
+    // Add the new arrow
+    if (index === columnIndex) {
+      const sortOrderArrow = sortOrder === "asc" ? " \u2191" : " \u2193";
+      header.textContent = header.textContent.trim() + sortOrderArrow;
+    }
   });
-
-  // Add new arrow 
-  const sortOrderArrow = sortOrder === "asc" ? " \u2191" : " \u2193";
-  eventTarget.textContent = eventTarget.textContent.trim() + sortOrderArrow;
 }
 
 // Function to apply alternating row colors
@@ -118,7 +132,10 @@ sortableTables.forEach(table => {
   if (sortableClass) {
     // Add click event listener to each table header
     headers.forEach(header => {
-      header.addEventListener("click", sortTable);
+      header.addEventListener("click", (event) => {
+        sortTable(event);
+      });
+
       if (header.textContent.trim() !== "") {
         header.style.cursor = "pointer"; 
         header.style.textDecoration = "underline";
@@ -126,15 +143,8 @@ sortableTables.forEach(table => {
       }
     });
 
-    // Trigger the sorting based on the column indices
-    columnIndices.forEach(index => {
-      const headerToSort = headers[index];
-      if (headerToSort) {
-        // Set the initial sorting order to "asc" for the headers to be sorted on load
-        headerToSort.dataset.sortOrder = table.classList.contains("descending") ? "asc" : "desc";
-        sortTable({ target: headerToSort }); // Manually trigger the sorting function
-      }
-    });
+    // Trigger the sorting manually for default onload sort
+    sortTable(table);
   }
 
   // Apply initial alternating row colors
