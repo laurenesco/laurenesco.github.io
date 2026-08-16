@@ -1,1 +1,78 @@
-{}
+{
+  "moving-zeros-to-the-end": {
+    "id": -5,
+    "name": "5 kyu"
+  },
+  "most-frequently-used-words-in-a-text": {
+    "id": -4,
+    "name": "4 kyu"
+  },
+  "image-host-filename-generator": {
+    "id": -6,
+    "name": "6 kyu"
+  },
+  "simple-substitution-cipher-helper": {
+    "id": -6,
+    "name": "6 kyu"
+  },
+  "basic-subclasses-adam-and-eve": {
+    "id": -8,
+    "name": "8 kyu"
+  },
+  "rgb-to-hex-conversion": {
+    "id": -5,
+    "name": "5 kyu"
+  },
+  "design-a-simple-automaton-finite-state-machine": {
+    "id": -6,
+    "name": "6 kyu"
+  },
+  "who-has-the-most-money": {
+    "id": -6,
+    "name": "6 kyu"
+  },
+  "grasshopper-array-mean": {
+    "id": -8,
+    "name": "8 kyu"
+  },
+  "grasshopper-bug-squashing": {
+    "id": -8,
+    "name": "8 kyu"
+  },
+  "grasshopper-if-slash-else-syntax-debug": {
+    "id": -8,
+    "name": "8 kyu"
+  },
+  "grasshopper-terminal-game-number-1": {
+    "id": -8,
+    "name": "8 kyu"
+  },
+  "classy-classes": {
+    "id": -8,
+    "name": "8 kyu"
+  },
+  "paginationhelper": {
+    "id": -5,
+    "name": "5 kyu"
+  },
+  "oop-object-oriented-piracy": {
+    "id": -8,
+    "name": "8 kyu"
+  },
+  "building-blocks": {
+    "id": -7,
+    "name": "7 kyu"
+  },
+  "simple-web-framework-number-1-create-a-basic-router": {
+    "id": -6,
+    "name": "6 kyu"
+  },
+  "vigenere-cipher-helper": {
+    "id": -4,
+    "name": "4 kyu"
+  },
+  "finish-guess-the-number-game": {
+    "id": -8,
+    "name": "8 kyu"
+  }
+}
