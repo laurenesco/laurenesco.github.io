@@ -1,0 +1,8 @@
+{
+  "generatedAt": null,
+  "goals": { "weeklyProblems": 5 },
+  "monthly": [],
+  "currentWeek": { "start": null, "end": null, "codewars": 0, "leetcode": 0, "total": 0, "goal": 5 },
+  "totals": { "codewars": 0, "leetcode": 0, "codewarsRank": "n/a", "codewarsHonor": null },
+  "github": { "totalContributionsLastYear": null, "currentStreak": 0, "longestStreak": 0, "calendar": [] }
+}

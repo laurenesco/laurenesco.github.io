@@ -1,0 +1,45 @@
+name: Update Dashboard Stats
+
+on:
+  schedule:
+    # Runs daily at 13:00 UTC (~8am Central). Edit to taste.
+    - cron: "0 13 * * *"
+  workflow_dispatch: {} # lets you trigger it manually from the Actions tab
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/update-stats.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch latest stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_USERNAME: laurenesco
+          CODEWARS_USERNAME: laurenesco
+          LEETCODE_REPO: laurenesco/leetcode
+          WEEKLY_GOAL: "5"
+        run: node scripts/update-stats.mjs
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/stats.json data/kata-cache.json
+          git diff --cached --quiet || git commit -m "chore: update dashboard stats [skip ci]"
+          git push

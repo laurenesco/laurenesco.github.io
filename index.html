@@ -1,178 +1,502 @@
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="webiste-css.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>laurenesco // dev-log</title>
+<meta name="description" content="Coding practice and portfolio-build activity dashboard." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0B0F12;
+    --bg-grid: rgba(255,255,255,0.035);
+    --panel:#12181C;
+    --panel-border:#232B30;
+    --text:#E7E3DA;
+    --text-muted:#8A9299;
+    --amber:#FFB020;
+    --amber-dim: rgba(255,176,32,0.18);
+    --cyan:#4FD1C5;
+    --red:#FF6B57;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+
+  body{
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(var(--bg-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--text);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    line-height: 1.4;
+  }
+
+  a{ color: var(--amber); }
+
+  .wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+  }
+
+  /* ---- status bar ---- */
+  .statusbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap: 8px 20px;
+    border-bottom: 1px solid var(--panel-border);
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+    font-family: var(--font-mono);
+  }
+  .statusbar .who{
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .statusbar .who b{ color: var(--text); font-weight:600; }
+  .statusbar .sync{
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .dot{
+    display:inline-block;
+    width:7px; height:7px;
+    border-radius:50%;
+    background: var(--amber);
+    margin-right:6px;
+    box-shadow: 0 0 6px var(--amber);
+  }
+
+  h1{
+    font-family: var(--font-mono);
+    font-size: clamp(22px, 3.4vw, 30px);
+    font-weight: 600;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .sub{
+    color: var(--text-muted);
+    margin: 0 0 32px;
+    font-size: 14.5px;
+    max-width: 62ch;
+  }
+
+  .panel{
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .panel + .panel{ margin-top: 20px; }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 14px;
+  }
+
+  /* ---- top grid: gauge + readouts ---- */
+  .top-grid{
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 720px){
+    .top-grid{ grid-template-columns: 1fr; }
+  }
+
+  .gauge-wrap{ display:flex; flex-direction:column; align-items:center; }
+  .gauge-caption{
+    font-family: var(--font-mono);
+    text-align:center;
+    margin-top: 8px;
+  }
+  .gauge-caption .big{
+    font-size: 26px;
+    font-weight:600;
+    color: var(--amber);
+  }
+  .gauge-caption .lbl{
+    font-size: 11.5px;
+    color: var(--text-muted);
+    letter-spacing:0.06em;
+    text-transform: uppercase;
+  }
+
+  .readout-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 520px){
+    .readout-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  .readout{
+    border: 1px solid var(--panel-border);
+    border-radius: 5px;
+    padding: 14px 14px 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+  }
+  .readout .num{
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight:600;
+    line-height:1;
+  }
+  .readout .num.amber{ color: var(--amber); }
+  .readout .num.cyan{ color: var(--cyan); }
+  .readout .lbl{
+    margin-top:6px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .readout .delta{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ---- monthly bar chart ---- */
+  .chart{
+    display:flex;
+    align-items:flex-end;
+    gap: 10px;
+    height: 180px;
+    padding-top: 10px;
+    border-bottom: 1px solid var(--panel-border);
+  }
+  .chart-col{
+    flex:1;
+    display:flex;
+    flex-direction:column-reverse;
+    align-items:center;
+    height:100%;
+    gap:2px;
+  }
+  .bar{
+    width: 100%;
+    max-width: 26px;
+    border-radius: 2px 2px 0 0;
+  }
+  .bar.amber{ background: var(--amber); }
+  .bar.cyan{ background: var(--cyan); }
+  .chart-labels{
+    display:flex;
+    gap:10px;
+    margin-top: 8px;
+  }
+  .chart-labels span{
+    flex:1;
+    text-align:center;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+  }
+  .legend{
+    display:flex; gap:18px; margin-top:14px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-muted);
+  }
+  .legend span{ display:flex; align-items:center; gap:6px; }
+  .swatch{ width:9px; height:9px; border-radius:2px; display:inline-block; }
+
+  /* ---- contribution grid ---- */
+  .contrib-scroll{
+    overflow-x:auto;
+    padding-bottom: 4px;
+  }
+  .contrib-grid{
+    display:grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(7, 11px);
+    gap: 3px;
+    width: max-content;
+  }
+  .cell{
+    width:11px; height:11px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.04);
+  }
+  .contrib-footer{
+    display:flex;
+    justify-content:space-between;
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-muted);
+  }
+
+  footer{
+    margin-top: 36px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-muted);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px 20px;
+  }
+  footer a{ color: var(--text-muted); text-decoration: underline; text-underline-offset:2px; }
+  footer a:hover{ color: var(--amber); }
+
+  .empty-note{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border: 1px dashed var(--panel-border);
+    border-radius:5px;
+    padding: 12px 14px;
+    margin-bottom: 24px;
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .needle{ transition: transform 900ms cubic-bezier(.2,.8,.2,1); }
+  }
+</style>
 </head>
-
 <body>
+<div class="wrap">
 
-    <table>
-        <tr>
-            <td class="nav1 navbar">
-                Home
-            </td>
-            <td class="nav2 navbar">
-                Applications
-            </td>
-            <td class="nav3 navbar">
-                Projects
-            </td>
-            <td class="nav4 navbar">
-                Skills
-            </td>
-            <td class="nav5 navbar">
-                About
-            </td>
-        </tr>
-    </table>
-    <div style="width: 100%; height: 700px;">
-        <div style="width: 45%; height: auto; float:left; overflow: hidden;">
-            <br><br>
-            <h1>
-                <p class="title"> </p> Lauren<br>Escobedo
-            </h1>
-            <br><br><br>
-            <div class="swiper-container" style="height: 310px">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="images\cat1.jpg" alt="Cat 1" style="max-width: 80%; height: 300px;">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="images\cat2.jpg" alt="Cat 1" style="max-width: 80%; height: 300px;">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="images\cat3.jpg" alt="Cat 1" style="max-width: 80%; height: 300px;">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="prev-arrow" style="background: transparent; border: none;">&#9664;</button>
-                <button class="next-arrow" style="background: transparent; border: none;">&#9654;</button>
-            </div>
+  <div class="statusbar">
+    <div class="who"><span class="dot"></span><b>laurenesco</b> / dev-log</div>
+    <div class="sync" id="syncTime">last sync: —</div>
+  </div>
 
-            <div style="width: 100%; text-align: center;">
-                <br><br><a style="color: black" href="https://outlook.office.com/?path=/mail/action/compose&to=lescobedo4@mail.stmarytx.edu&subject=subject&body=body">
-                    Contact Me
-                </a>
-            </div>
-        </div>
-        <div style="width:55%; height: 500px; float:right;">
-            <table class="sortable-onload-0-2 rowstyle-alternateRow">
-                <thead>
-                    <tr>
-                        <th class="sortable">
-                            Highlights
-                        </th>
-                        <th class="sortable">
-                            Description
-                        </th>
-                        <th class="sortable-numeric">
-                            Numbers
-                        </th>
-                        <th class="sortable-date">
-                            Date
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            Inventory Management Application
-                        </td>
-                        <td>
-                            A database driven application written in C++ capable of detailed tracking of inventory items
-                        </td>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            05-AUG-20
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Hotel Management Application
-                        </td>
-                        <td>
-                            A enterprise scale application written in C# capable of managing employees, customers,
-                            hotel locations, rooms, transactions, reservations, and more
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            07-JUN-19
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Drone Swarm Project
-                        </td>
-                        <td>
-                            Research aimed at developing software to better integrate a CrazySwarm with
-                            Vicon motion tracking technology
-                        </td>
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            05-AUG-22
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Research
-                        </td>
-                        <td>
-                            The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust
-                            articles reviewed
-                            and data compiled into one survey. Published 2022
-                        </td>
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            05-AUG-23
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Research
-                        </td>
-                        <td>
-                            The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust
-                            articles reviewed
-                            and data compiled into one survey. Published 2022
-                        </td>
-                        <td>
-                            7
-                        </td>
-                        <td>
-                            05-AUG-23
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Research
-                        </td>
-                        <td>
-                            The most recent, comprehensive HDI survey in the industry. Over 50 of the most robust
-                            articles reviewed
-                            and data compiled into one survey. Published 2022
-                        </td>
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            05-AUG-23
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+  <h1>Build log</h1>
+  <p class="sub">Weekly and monthly readouts from Codewars, the <code>leetcode</code> solutions repo, and overall GitHub activity — tracked against the 5-problems-a-week target from the portfolio plan.</p>
+
+  <div id="emptyNote" class="empty-note" style="display:none;">
+    No sync data yet. This shows placeholder values until the "Update Dashboard Stats" GitHub Action runs for the first time (or trigger it manually from the Actions tab).
+  </div>
+
+  <div class="top-grid">
+    <div class="panel gauge-wrap">
+      <p class="eyebrow" style="align-self:flex-start;">This week vs. goal</p>
+      <svg id="gauge" width="220" height="140" viewBox="0 0 220 140">
+        <!-- track -->
+        <path d="M 20 120 A 90 90 0 0 1 200 120" fill="none" stroke="#232B30" stroke-width="14" stroke-linecap="round"/>
+        <path id="gaugeProgress" d="M 20 120 A 90 90 0 0 1 200 120" fill="none" stroke="#FFB020" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283"/>
+        <g id="ticks"></g>
+        <line id="needle" class="needle" x1="110" y1="120" x2="110" y2="45" stroke="#E7E3DA" stroke-width="2" transform="rotate(-90 110 120)"/>
+        <circle cx="110" cy="120" r="5" fill="#E7E3DA"/>
+      </svg>
+      <div class="gauge-caption">
+        <div class="big" id="weekTotal">0 / 5</div>
+        <div class="lbl">problems this week</div>
+      </div>
     </div>
-    <script src="sortable-tables.js"></script>
-    <script src="image-slideshow.js"></script>
-</body>
 
+    <div class="panel">
+      <p class="eyebrow">This month</p>
+      <div class="readout-grid">
+        <div class="readout">
+          <div class="num amber" id="cwMonth">0</div>
+          <div class="lbl">Codewars katas</div>
+          <div class="delta" id="cwLevel">avg n/a</div>
+        </div>
+        <div class="readout">
+          <div class="num cyan" id="lcMonth">0</div>
+          <div class="lbl">LeetCode commits</div>
+          <div class="delta">1 commit ≈ 1 problem</div>
+        </div>
+        <div class="readout">
+          <div class="num" id="streak">0</div>
+          <div class="lbl">Day streak</div>
+          <div class="delta" id="longestStreak">longest: 0</div>
+        </div>
+        <div class="readout">
+          <div class="num amber" id="cwTotal">0</div>
+          <div class="lbl">Codewars total</div>
+          <div class="delta" id="cwRank">rank n/a</div>
+        </div>
+        <div class="readout">
+          <div class="num cyan" id="lcTotal">0</div>
+          <div class="lbl">LeetCode total</div>
+          <div class="delta">all-time commits</div>
+        </div>
+        <div class="readout">
+          <div class="num" id="contribYear">0</div>
+          <div class="lbl">GitHub contribs</div>
+          <div class="delta">last 12 months</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <p class="eyebrow">Monthly problems solved — last 12 months</p>
+    <div class="chart" id="chart"></div>
+    <div class="chart-labels" id="chartLabels"></div>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--amber)"></i>Codewars</span>
+      <span><i class="swatch" style="background:var(--cyan)"></i>LeetCode</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <p class="eyebrow">GitHub activity — last 12 months, all repos</p>
+    <div class="contrib-scroll">
+      <div class="contrib-grid" id="contribGrid"></div>
+    </div>
+    <div class="contrib-footer">
+      <span id="contribTotal">0 contributions</span>
+      <span>less <i class="swatch" style="background:rgba(255,255,255,0.04); margin:0 3px;"></i><i class="swatch" style="background:var(--amber-dim); margin:0 3px;"></i><i class="swatch" style="background:var(--amber); margin:0 3px; opacity:.6;"></i><i class="swatch" style="background:var(--amber); margin:0 3px;"></i> more</span>
+    </div>
+  </div>
+
+  <footer>
+    <span>Data refreshes daily via GitHub Actions.</span>
+    <span>
+      <a href="https://www.codewars.com/users/laurenesco" target="_blank" rel="noopener">Codewars</a> ·
+      <a href="https://github.com/laurenesco/leetcode" target="_blank" rel="noopener">leetcode repo</a> ·
+      <a href="https://github.com/laurenesco" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </footer>
+
+</div>
+
+<script>
+async function loadStats() {
+  try {
+    const res = await fetch('./data/stats.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('stats.json not found');
+    return await res.json();
+  } catch (e) {
+    console.warn('Could not load data/stats.json', e);
+    return null;
+  }
+}
+
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+function renderGauge(current, goal) {
+  const pct = Math.max(0, Math.min(1, goal > 0 ? current / goal : 0));
+  const circumference = 283; // approx length of the arc path
+  const offset = circumference - pct * circumference;
+  document.getElementById('gaugeProgress').style.strokeDashoffset = offset;
+  if (current > goal) {
+    document.getElementById('gaugeProgress').setAttribute('stroke', '#4FD1C5');
+  }
+  const angle = -90 + pct * 180; // -90deg (start) to +90deg (end)
+  document.getElementById('needle').setAttribute('transform', `rotate(${angle} 110 120)`);
+}
+
+function renderChart(monthly) {
+  const chart = document.getElementById('chart');
+  const labels = document.getElementById('chartLabels');
+  chart.innerHTML = '';
+  labels.innerHTML = '';
+  if (!monthly.length) return;
+  const max = Math.max(1, ...monthly.map(m => Math.max(m.codewars, m.leetcode)));
+
+  monthly.forEach(m => {
+    const col = document.createElement('div');
+    col.className = 'chart-col';
+    const cw = document.createElement('div');
+    cw.className = 'bar amber';
+    cw.style.height = (m.codewars / max * 100) + '%';
+    cw.title = `${m.month}: ${m.codewars} Codewars katas`;
+    const lc = document.createElement('div');
+    lc.className = 'bar cyan';
+    lc.style.height = (m.leetcode / max * 100) + '%';
+    lc.title = `${m.month}: ${m.leetcode} LeetCode commits`;
+    col.appendChild(cw);
+    col.appendChild(lc);
+    chart.appendChild(col);
+
+    const lbl = document.createElement('span');
+    const [y, mo] = m.month.split('-');
+    const d = new Date(Number(y), Number(mo) - 1, 1);
+    lbl.textContent = d.toLocaleDateString('en-US', { month: 'short' });
+    labels.appendChild(lbl);
+  });
+}
+
+function contribColor(count) {
+  if (!count) return 'rgba(255,255,255,0.04)';
+  if (count === 1) return 'rgba(255,176,32,0.35)';
+  if (count <= 3) return 'rgba(255,176,32,0.6)';
+  if (count <= 6) return '#FFB020';
+  return '#FFD37A';
+}
+
+function renderContribGrid(days) {
+  const grid = document.getElementById('contribGrid');
+  grid.innerHTML = '';
+  if (!days.length) return;
+
+  // Pad the front so the first column starts on Sunday
+  const first = new Date(days[0].date);
+  const pad = first.getDay();
+  const padded = Array(pad).fill(null).concat(days);
+
+  padded.forEach(d => {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    if (d) {
+      cell.style.background = contribColor(d.contributionCount);
+      cell.title = `${d.date}: ${d.contributionCount} contribution${d.contributionCount === 1 ? '' : 's'}`;
+    } else {
+      cell.style.background = 'transparent';
+    }
+    grid.appendChild(cell);
+  });
+}
+
+(async function init() {
+  const stats = await loadStats();
+  if (!stats || !stats.generatedAt) {
+    document.getElementById('emptyNote').style.display = 'block';
+  }
+  if (!stats) return;
+
+  document.getElementById('syncTime').textContent = stats.generatedAt
+    ? `last sync: ${new Date(stats.generatedAt).toLocaleString()}`
+    : 'last sync: —';
+
+  const wk = stats.currentWeek || { total: 0, goal: 5 };
+  setText('weekTotal', `${wk.total} / ${wk.goal}`);
+  renderGauge(wk.total, wk.goal);
+
+  const monthly = stats.monthly || [];
+  const thisMonth = monthly[monthly.length - 1] || { codewars: 0, leetcode: 0, avgKataLevel: 'n/a' };
+  setText('cwMonth', thisMonth.codewars);
+  setText('lcMonth', thisMonth.leetcode);
+  setText('cwLevel', `avg ${thisMonth.avgKataLevel}`);
+  renderChart(monthly);
+
+  const totals = stats.totals || {};
+  setText('cwTotal', totals.codewars ?? 0);
+  setText('cwRank', `rank ${totals.codewarsRank || 'n/a'}`);
+  setText('lcTotal', totals.leetcode ?? 0);
+
+  const gh = stats.github || {};
+  setText('streak', gh.currentStreak ?? 0);
+  setText('longestStreak', `longest: ${gh.longestStreak ?? 0}`);
+  setText('contribYear', gh.totalContributionsLastYear ?? 0);
+  setText('contribTotal', `${gh.totalContributionsLastYear ?? 0} contributions in the last 12 months`);
+  renderContribGrid(gh.calendar || []);
+})();
+</script>
+</body>
 </html>
