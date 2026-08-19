@@ -74,5 +74,9 @@
   "finish-guess-the-number-game": {
     "id": -8,
     "name": "8 kyu"
+  },
+  "codewars-style-ranking-system": {
+    "id": -4,
+    "name": "4 kyu"
   }
 }
