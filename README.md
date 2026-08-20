@@ -1,4 +1,4 @@
-# laurenesco.github.io - Development log dashboard
+# Development Log Dashboard
 
 A static dashboard tracking coding exercises (e.g., Codewars, Leetcode), and overall GitHub activity, updated automatically once a day by a
 GitHub Action.
