@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>laurenesco // dev-log</title>
-<meta name="description" content="Coding practice and portfolio-build activity dashboard." />
+<title>laurenesco // development-log</title>
+<meta name="description" content="Coding practice and portfolio build activity dashboard." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -18,6 +18,8 @@
     --text-muted:#8A9299;
     --amber:#FFB020;
     --amber-dim: rgba(255,176,32,0.18);
+    --green: #3fff00;
+    --green-dim: rgba(36, 255, 32, 0.18);
     --cyan:#4FD1C5;
     --red:#FF6B57;
     --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -29,9 +31,9 @@
 
   body{
     background-color: var(--bg);
-    background-image:
-      linear-gradient(var(--bg-grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+    /* background-image: */
+      /* linear-gradient(var(--bg-grid) 1px, transparent 1px), */
+      /* linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px); */
     background-size: 28px 28px;
     color: var(--text);
     font-family: var(--font-sans);
@@ -63,7 +65,7 @@
     font-size: 14px;
     letter-spacing: 0.06em;
     color: var(--text-muted);
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
   }
   .statusbar .who b{ color: var(--text); font-weight:600; }
   .statusbar .sync{
@@ -74,9 +76,9 @@
     display:inline-block;
     width:7px; height:7px;
     border-radius:50%;
-    background: var(--amber);
+    background: var(--green);
     margin-right:6px;
-    box-shadow: 0 0 6px var(--amber);
+    box-shadow: 0 0 6px var(--green);
   }
 
   h1{
@@ -275,17 +277,18 @@
 <div class="wrap">
 
   <div class="statusbar">
-    <div class="who"><span class="dot"></span><b>laurenesco</b> / dev-log</div>
+    <div class="who"><span class="dot"></span><b> laurenesco</b> / dev-log</div>
     <div class="sync" id="syncTime">last sync: —</div>
   </div>
 
   <h1>Build log</h1>
-  <p class="sub">Weekly and monthly readouts from Codewars, the <code>leetcode</code> solutions repo, and overall GitHub activity — tracked against the 5-problems-a-week target from the portfolio plan.</p>
+  <p class="sub">Weekly and monthly readouts from Codewars, Leetcode, and overall GitHub activity. Tracked against my goal of 5 coding problems per week.</p>
 
   <div id="emptyNote" class="empty-note" style="display:none;">
-    No sync data yet. This shows placeholder values until the "Update Dashboard Stats" GitHub Action runs for the first time (or trigger it manually from the Actions tab).
+    Uh oh. No sync data found.
   </div>
 
+  <!-- Weekly gauge -->
   <div class="top-grid">
     <div class="panel gauge-wrap">
       <p class="eyebrow" style="align-self:flex-start;">This week vs. goal</p>
@@ -303,34 +306,47 @@
       </div>
     </div>
 
+    <!-- Monthly stats -->
     <div class="panel">
       <p class="eyebrow">This month</p>
       <div class="readout-grid">
+
+        <!-- Coding exercises this week -->
         <div class="readout">
           <div class="num amber" id="cwMonth">0</div>
-          <div class="lbl">Codewars katas</div>
+          <div class="lbl">Coding exercises this week</div>
           <div class="delta" id="cwLevel">avg n/a</div>
         </div>
+
+        <!-- Average kata of Codewars problems -->
         <div class="readout">
           <div class="num cyan" id="lcMonth">0</div>
-          <div class="lbl">LeetCode commits</div>
+          <div class="lbl">LeetCode this week</div>
           <div class="delta">1 commit ≈ 1 problem</div>
         </div>
+
+        <!-- Streak -->
         <div class="readout">
           <div class="num" id="streak">0</div>
           <div class="lbl">Day streak</div>
           <div class="delta" id="longestStreak">longest: 0</div>
         </div>
+
+        <!-- Total coding exercises completed -->
         <div class="readout">
           <div class="num amber" id="cwTotal">0</div>
           <div class="lbl">Codewars total</div>
           <div class="delta" id="cwRank">rank n/a</div>
         </div>
+
+        <!-- GitHub contributions this week -->
         <div class="readout">
           <div class="num cyan" id="lcTotal">0</div>
           <div class="lbl">LeetCode total</div>
           <div class="delta">all-time commits</div>
         </div>
+
+        <!-- All-time GitHub contributions -->
         <div class="readout">
           <div class="num" id="contribYear">0</div>
           <div class="lbl">GitHub contribs</div>
@@ -340,18 +356,22 @@
     </div>
   </div>
 
+  <br>
+
+  <!-- Monthly contributions -->
   <div class="panel">
-    <p class="eyebrow">Monthly problems solved — last 12 months</p>
+    <p class="eyebrow">Monthly commits | last 12 months</p>
     <div class="chart" id="chart"></div>
     <div class="chart-labels" id="chartLabels"></div>
     <div class="legend">
-      <span><i class="swatch" style="background:var(--amber)"></i>Codewars</span>
-      <span><i class="swatch" style="background:var(--cyan)"></i>LeetCode</span>
+      <span><i class="swatch" style="background:var(--amber)"></i>Coding Exercises</span>
+      <span><i class="swatch" style="background:var(--cyan)"></i>Project Work</span>
     </div>
   </div>
 
+  <!-- GitHub heat map -->
   <div class="panel">
-    <p class="eyebrow">GitHub activity — last 12 months, all repos</p>
+    <p class="eyebrow">GitHub activity | last 12 months | all repos</p>
     <div class="contrib-scroll">
       <div class="contrib-grid" id="contribGrid"></div>
     </div>
@@ -365,7 +385,7 @@
     <span>Data refreshes daily via GitHub Actions.</span>
     <span>
       <a href="https://www.codewars.com/users/laurenesco" target="_blank" rel="noopener">Codewars</a> ·
-      <a href="https://github.com/laurenesco/leetcode" target="_blank" rel="noopener">leetcode repo</a> ·
+      <a href="https://www.linkedin.com/in/lescobedo50/" target="_blank" rel="noopener">LinkedIn</a> ·
       <a href="https://github.com/laurenesco" target="_blank" rel="noopener">GitHub</a>
     </span>
   </footer>
