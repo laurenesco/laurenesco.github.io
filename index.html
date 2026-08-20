@@ -301,7 +301,7 @@
         <circle cx="110" cy="120" r="5" fill="#E7E3DA"/>
       </svg>
       <div class="gauge-caption">
-        <div class="big" id="weekTotal">0 / 5</div>
+        <div class="big" id="weekly_problems">0 / 5</div>
         <div class="lbl">problems this week</div>
       </div>
     </div>
@@ -313,42 +313,42 @@
 
         <!-- Coding exercises this week -->
         <div class="readout">
-          <div class="num amber" id="cwMonth">0</div>
+          <div class="num amber" id="weekly_problems">0</div>
           <div class="lbl">Coding exercises this week</div>
-          <div class="delta" id="cwLevel">avg n/a</div>
+          <div class="delta">codewars & leetcode</div>
         </div>
 
         <!-- Average kata of Codewars problems -->
         <div class="readout">
-          <div class="num cyan" id="lcMonth">0</div>
-          <div class="lbl">LeetCode this week</div>
-          <div class="delta">1 commit ≈ 1 problem</div>
+          <div class="num cyan" id="monthly_cwLevel">0</div>
+          <div class="lbl">Average kyu of problems solved</div>
+          <div class="delta">8 = easiest, 1 = most difficult</div>
         </div>
 
         <!-- Streak -->
         <div class="readout">
-          <div class="num" id="streak">0</div>
+          <div class="num" id="gh_streak">0</div>
           <div class="lbl">Day streak</div>
-          <div class="delta" id="longestStreak">longest: 0</div>
+          <div class="delta" id="gh_longestStreak">longest: 0</div>
         </div>
 
         <!-- Total coding exercises completed -->
         <div class="readout">
-          <div class="num amber" id="cwTotal">0</div>
-          <div class="lbl">Codewars total</div>
-          <div class="delta" id="cwRank">rank n/a</div>
+          <div class="num amber" id="total_problems">0</div>
+          <div class="lbl">Total coding exercises</div>
+          <div class="delta">all-time</div>
         </div>
 
         <!-- GitHub contributions this week -->
         <div class="readout">
-          <div class="num cyan" id="lcTotal">0</div>
-          <div class="lbl">LeetCode total</div>
-          <div class="delta">all-time commits</div>
+          <div class="num cyan" id="gh_thisWeek">0</div>
+          <div class="lbl">GitHub contibs</div>
+          <div class="delta">this week</div>
         </div>
 
-        <!-- All-time GitHub contributions -->
+        <!-- Last 12 months GitHub contributions -->
         <div class="readout">
-          <div class="num" id="contribYear">0</div>
+          <div class="num" id="gh_contribYear">0</div>
           <div class="lbl">GitHub contribs</div>
           <div class="delta">last 12 months</div>
         </div>
@@ -376,7 +376,7 @@
       <div class="contrib-grid" id="contribGrid"></div>
     </div>
     <div class="contrib-footer">
-      <span id="contribTotal">0 contributions</span>
+      <span id="gh_contribTotal">0 contributions</span>
       <span>less <i class="swatch" style="background:rgba(255,255,255,0.04); margin:0 3px;"></i><i class="swatch" style="background:var(--amber-dim); margin:0 3px;"></i><i class="swatch" style="background:var(--amber); margin:0 3px; opacity:.6;"></i><i class="swatch" style="background:var(--amber); margin:0 3px;"></i> more</span>
     </div>
   </div>
@@ -495,26 +495,24 @@ function renderContribGrid(days) {
     : 'last sync: —';
 
   const wk = stats.currentWeek || { total: 0, goal: 5 };
-  setText('weekTotal', `${wk.total} / ${wk.goal}`);
+  setText('weekly_problems', `${wk.total} / ${wk.goal}`);
   renderGauge(wk.total, wk.goal);
 
   const monthly = stats.monthly || [];
-  const thisMonth = monthly[monthly.length - 1] || { codewars: 0, leetcode: 0, avgKataLevel: 'n/a' };
-  setText('cwMonth', thisMonth.codewars);
-  setText('lcMonth', thisMonth.leetcode);
-  setText('cwLevel', `avg ${thisMonth.avgKataLevel}`);
+  const thisMonth = monthly[monthly.length - 1] || { codingProblems: 0, avgKataLevel: 'n/a' };
+  setText('monthly_problems', thisMonth.codingProblems);
+  setText('monthly_cwLevel', `${thisMonth.avgKataLevel}`);
   renderChart(monthly);
 
   const totals = stats.totals || {};
-  setText('cwTotal', totals.codewars ?? 0);
-  setText('cwRank', `rank ${totals.codewarsRank || 'n/a'}`);
-  setText('lcTotal', totals.leetcode ?? 0);
+  setText('total_problems', totals.totalProblems ?? 0);
 
   const gh = stats.github || {};
-  setText('streak', gh.currentStreak ?? 0);
-  setText('longestStreak', `longest: ${gh.longestStreak ?? 0}`);
-  setText('contribYear', gh.totalContributionsLastYear ?? 0);
-  setText('contribTotal', `${gh.totalContributionsLastYear ?? 0} contributions in the last 12 months`);
+  setText('gh_streak', gh.currentStreak ?? 0);
+  setText('gh_thisWeek', gh.contributionsThisWeek ?? 0);
+  setText('gh_longestStreak', `longest: ${gh.longestStreak ?? 0}`);
+  setText('gh_contribYear', gh.totalContributionsLastYear ?? 0);
+  setText('gh_contribTotal', `${gh.totalContributionsLastYear ?? 0} contributions in the last 12 months`);
   renderContribGrid(gh.calendar || []);
 })();
 </script>

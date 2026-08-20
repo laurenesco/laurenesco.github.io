@@ -1,6 +1,7 @@
 // update-stats.mjs
-// Pulls activity data from Codewars, a GitHub "leetcode" repo, and the GitHub
-// contribution graph, then writes a single data/stats.json the dashboard reads.
+//
+// Pulls activity data from Codewars API, a GitHub "leetcode" repo, and the GitHub
+// contribution graph API, then writes a single data/stats.json the dashboard reads.
 //
 // Env vars (set in .github/workflows/update-stats.yml):
 //   GH_USERNAME        - GitHub username (e.g. "laurenesco")
@@ -16,7 +17,7 @@ import path from "node:path";
 
 const GH_USERNAME = process.env.GH_USERNAME;
 const CODEWARS_USERNAME = process.env.CODEWARS_USERNAME;
-const LEETCODE_REPO = process.env.LEETCODE_REPO; // "owner/repo"
+const LEETCODE_REPO = process.env.LEETCODE_REPO; 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GH_PAT = process.env.GH_PAT || GITHUB_TOKEN;
 const WEEKLY_GOAL = Number(process.env.WEEKLY_GOAL || 5);
@@ -61,7 +62,7 @@ async function fetchAllCompletedKatas(username) {
     const res = await fetch(
       `https://www.codewars.com/api/v1/users/${encodeURIComponent(username)}/code-challenges/completed?page=${page}`
     );
-    if (!res.ok) throw new Error(`Codewars completed-challenges request failed: ${res.status}`);
+    if (!res.ok) throw new Error(`Codewars completed challenges request failed: ${res.status}`);
     const json = await res.json();
     results.push(...json.data);
     page += 1;
@@ -256,6 +257,16 @@ function countInRange(dateStrs, start, end) {
   }).length;
 }
 
+function sumContributionsInRange(days, start, end) {
+  return days.reduce((sum, d) => {
+    const t = new Date(d.date).getTime();
+    if (t >= start.getTime() && t <= end.getTime() + 24 * 60 * 60 * 1000 - 1) {
+      return sum + d.contributionCount;
+    }
+    return sum;
+  }, 0);
+}
+
 // ---------- Main ----------
 
 async function main() {
@@ -288,8 +299,7 @@ async function main() {
     const avgScore = cw.scoreCount > 0 ? cw.scoreSum / cw.scoreCount : null;
     return {
       month,
-      codewars: cw.count,
-      leetcode: lcMonthly.get(month) || 0,
+      codingProblems: cw.count + (lcMonthly.get(month) || 0),
       avgKataLevel: rankScoreToLabel(avgScore),
       avgKataScore: avgScore,
     };
@@ -310,19 +320,17 @@ async function main() {
     currentWeek: {
       start: start.toISOString().slice(0, 10),
       end: end.toISOString().slice(0, 10),
-      codewars: weekCodewars,
-      leetcode: weekLeetcode,
       total: weekCodewars + weekLeetcode,
       goal: WEEKLY_GOAL,
     },
     totals: {
-      codewars: cwTotal,
-      leetcode: commits.length,
+      totalProblems: cwTotal + commits.length,
       codewarsRank: cwProfile?.ranks?.overall?.name || "n/a",
       codewarsHonor: cwProfile?.honor ?? null,
     },
     github: {
       totalContributionsLastYear: contrib?.totalContributions ?? null,
+      contributionsThisWeek: contrib ? sumContributionsInRange(contrib.days, start, end) : 0,
       currentStreak: streaks.current,
       longestStreak: streaks.longest,
       calendar: contrib?.days ?? [],
