@@ -17,7 +17,7 @@ import path from "node:path";
 
 const GH_USERNAME = process.env.GH_USERNAME;
 const CODEWARS_USERNAME = process.env.CODEWARS_USERNAME;
-const LEETCODE_REPO = process.env.LEETCODE_REPO; 
+const LEETCODE_REPO = process.env.LEETCODE_REPO;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GH_PAT = process.env.GH_PAT || GITHUB_TOKEN;
 const WEEKLY_GOAL = Number(process.env.WEEKLY_GOAL || 5);

@@ -176,12 +176,32 @@
 
   /* ---- monthly bar chart ---- */
   .chart{
+    position: relative;
     display:flex;
     align-items:flex-end;
     gap: 10px;
     height: 180px;
     padding-top: 10px;
+    padding-left: 26px;
     border-bottom: 1px solid var(--panel-border);
+  }
+  .chart-gridline{
+    position:absolute;
+    left:26px; right:0;
+    height:1px;
+    background: rgba(255,255,255,0.07);
+    pointer-events:none;
+  }
+  .chart-gridline-label{
+    position:absolute;
+    left:0;
+    width:20px;
+    transform: translateY(-50%);
+    text-align:right;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    pointer-events:none;
   }
   .chart-col{
     flex:1;
@@ -421,31 +441,62 @@ function renderGauge(current, goal) {
   document.getElementById('needle').setAttribute('transform', `rotate(${angle} 110 120)`);
 }
 
-function renderChart(monthly) {
+function buildMonthlyCommitTotals(days) {
+  const totals = new Map();
+  for (const d of days) {
+    const key = d.date.slice(0, 7);
+    totals.set(key, (totals.get(key) || 0) + d.contributionCount);
+  }
+  return totals;
+}
+
+function renderChart(monthly, commitTotals) {
   const chart = document.getElementById('chart');
   const labels = document.getElementById('chartLabels');
   chart.innerHTML = '';
   labels.innerHTML = '';
   if (!monthly.length) return;
-  const max = Math.max(1, ...monthly.map(m => Math.max(m.codewars, m.leetcode)));
 
-  monthly.forEach(m => {
+  const bars = monthly.map(m => {
+    const codingProblems = m.codingProblems ?? 0;
+    const totalCommits = commitTotals.get(m.month) || 0;
+    const projectWork = Math.max(0, totalCommits - codingProblems);
+    return { month: m.month, codingProblems, projectWork };
+  });
+
+  const max = Math.max(1, ...bars.map(b => Math.max(b.codingProblems, b.projectWork)));
+
+  for (let v = 10; v <= max; v += 10) {
+    const bottom = (v / max * 100) + '%';
+    const line = document.createElement('div');
+    line.className = 'chart-gridline';
+    line.style.bottom = bottom;
+    chart.appendChild(line);
+
+    const label = document.createElement('span');
+    label.className = 'chart-gridline-label';
+    label.style.bottom = bottom;
+    label.textContent = v;
+    chart.appendChild(label);
+  }
+
+  bars.forEach(b => {
     const col = document.createElement('div');
     col.className = 'chart-col';
     const cw = document.createElement('div');
     cw.className = 'bar amber';
-    cw.style.height = (m.codewars / max * 100) + '%';
-    cw.title = `${m.month}: ${m.codewars} Codewars katas`;
+    cw.style.height = (b.codingProblems / max * 100) + '%';
+    cw.title = `${b.month}: ${b.codingProblems} coding exercises`;
     const lc = document.createElement('div');
     lc.className = 'bar cyan';
-    lc.style.height = (m.leetcode / max * 100) + '%';
-    lc.title = `${m.month}: ${m.leetcode} LeetCode commits`;
+    lc.style.height = (b.projectWork / max * 100) + '%';
+    lc.title = `${b.month}: ${b.projectWork} commits (project work)`;
     col.appendChild(cw);
     col.appendChild(lc);
     chart.appendChild(col);
 
     const lbl = document.createElement('span');
-    const [y, mo] = m.month.split('-');
+    const [y, mo] = b.month.split('-');
     const d = new Date(Number(y), Number(mo) - 1, 1);
     lbl.textContent = d.toLocaleDateString('en-US', { month: 'short' });
     labels.appendChild(lbl);
@@ -502,12 +553,12 @@ function renderContribGrid(days) {
   const thisMonth = monthly[monthly.length - 1] || { codingProblems: 0, avgKataLevel: 'n/a' };
   setText('monthly_problems', thisMonth.codingProblems);
   setText('monthly_cwLevel', `${thisMonth.avgKataLevel}`);
-  renderChart(monthly);
 
   const totals = stats.totals || {};
   setText('total_problems', totals.totalProblems ?? 0);
 
   const gh = stats.github || {};
+  renderChart(monthly, buildMonthlyCommitTotals(gh.calendar || []));
   setText('gh_streak', gh.currentStreak ?? 0);
   setText('gh_thisWeek', gh.contributionsThisWeek ?? 0);
   setText('gh_longestStreak', `longest: ${gh.longestStreak ?? 0}`);
