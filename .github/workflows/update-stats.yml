@@ -1,5 +1,4 @@
 name: Update Dashboard Stats
-
 on:
   schedule:
     - cron: "0 8 * * *"
@@ -9,22 +8,21 @@ on:
     paths:
       - "scripts/**"
       - ".github/workflows/update-stats.yml"
-
 permissions:
   contents: write
-
+concurrency:
+  group: update-dashboard-stats
+  cancel-in-progress: false
 jobs:
   update-stats:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-
       - name: Fetch latest stats
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,11 +32,11 @@ jobs:
           LEETCODE_REPO: laurenesco/leetcode
           WEEKLY_GOAL: "5"
         run: node scripts/update-stats.mjs
-
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/stats.json data/kata-cache.json
           git diff --cached --quiet || git commit -m "chore: update dashboard stats [skip ci]"
+          git pull --rebase origin main
           git push
