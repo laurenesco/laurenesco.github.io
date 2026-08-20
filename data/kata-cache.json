@@ -78,5 +78,13 @@
   "codewars-style-ranking-system": {
     "id": -4,
     "name": "4 kyu"
+  },
+  "eulers-method-for-a-first-order-ode": {
+    "id": -5,
+    "name": "5 kyu"
+  },
+  "longest-palindromic-substring-linear": {
+    "id": -4,
+    "name": "4 kyu"
   }
 }
