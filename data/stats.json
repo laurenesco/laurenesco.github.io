@@ -1,90 +1,78 @@
 {
-  "generatedAt": "2026-08-20T13:43:45.444Z",
+  "generatedAt": "2026-08-20T19:51:54.699Z",
   "goals": {
     "weeklyProblems": 5
   },
   "monthly": [
     {
       "month": "2025-09",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2025-10",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2025-11",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2025-12",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2026-01",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2026-02",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2026-03",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2026-04",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2026-05",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2026-06",
-      "codewars": 0,
-      "leetcode": 0,
+      "codingProblems": 0,
       "avgKataLevel": "n/a",
       "avgKataScore": null
     },
     {
       "month": "2026-07",
-      "codewars": 2,
-      "leetcode": 0,
+      "codingProblems": 2,
       "avgKataLevel": "6 kyu",
       "avgKataScore": -6
     },
     {
       "month": "2026-08",
-      "codewars": 18,
-      "leetcode": 0,
+      "codingProblems": 18,
       "avgKataLevel": "6 kyu",
       "avgKataScore": -6.444444444444445
     }
@@ -92,20 +80,18 @@
   "currentWeek": {
     "start": "2026-08-16",
     "end": "2026-08-22",
-    "codewars": 1,
-    "leetcode": 0,
     "total": 1,
     "goal": 5
   },
   "totals": {
-    "codewars": 20,
-    "leetcode": 18,
+    "totalProblems": 38,
     "codewarsRank": "5 kyu",
     "codewarsHonor": 280
   },
   "github": {
-    "totalContributionsLastYear": 378,
-    "currentStreak": 0,
+    "totalContributionsLastYear": 380,
+    "contributionsThisWeek": 13,
+    "currentStreak": 7,
     "longestStreak": 8,
     "calendar": [
       {
@@ -1582,7 +1568,7 @@
       },
       {
         "date": "2026-08-20",
-        "contributionCount": 0
+        "contributionCount": 2
       }
     ]
   }
