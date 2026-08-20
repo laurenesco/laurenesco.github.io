@@ -334,7 +334,7 @@
 
         <!-- Coding exercises this week -->
         <div class="readout">
-          <div class="num amber" id="weekly_problems">0</div>
+          <div class="num amber" id="weekly_problems_tile">0</div>
           <div class="lbl">Coding exercises this week</div>
           <div class="delta">codewars & leetcode</div>
         </div>
@@ -548,11 +548,11 @@ function renderContribGrid(days) {
 
   const wk = stats.currentWeek || { total: 0, goal: 5 };
   setText('weekly_problems', `${wk.total} / ${wk.goal}`);
+  setText('weekly_problems_tile', wk.total);
   renderGauge(wk.total, wk.goal);
 
   const monthly = stats.monthly || [];
   const thisMonth = monthly[monthly.length - 1] || { codingProblems: 0, avgKataLevel: 'n/a' };
-  setText('monthly_problems', thisMonth.codingProblems);
   setText('monthly_cwLevel', `${thisMonth.avgKataLevel}`);
 
   const totals = stats.totals || {};
