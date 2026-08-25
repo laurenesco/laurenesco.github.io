@@ -86,5 +86,13 @@
   "longest-palindromic-substring-linear": {
     "id": -4,
     "name": "4 kyu"
+  },
+  "square-n-sum": {
+    "id": -8,
+    "name": "8 kyu"
+  },
+  "easy-cyclists-training": {
+    "id": -5,
+    "name": "5 kyu"
   }
 }
