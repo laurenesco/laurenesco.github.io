@@ -94,5 +94,13 @@
   "easy-cyclists-training": {
     "id": -5,
     "name": "5 kyu"
+  },
+  "computing-the-entropy-of-a-message": {
+    "id": -7,
+    "name": "7 kyu"
+  },
+  "longest-consecutive-sequence-of-squares": {
+    "id": -6,
+    "name": "6 kyu"
   }
 }
