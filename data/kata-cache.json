@@ -102,5 +102,9 @@
   "longest-consecutive-sequence-of-squares": {
     "id": -6,
     "name": "6 kyu"
+  },
+  "jaden-casing-strings": {
+    "id": -7,
+    "name": "7 kyu"
   }
 }
