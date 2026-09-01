@@ -106,5 +106,9 @@
   "jaden-casing-strings": {
     "id": -7,
     "name": "7 kyu"
+  },
+  "unique-in-order": {
+    "id": -6,
+    "name": "6 kyu"
   }
 }
