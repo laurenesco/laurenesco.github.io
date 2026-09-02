@@ -110,5 +110,9 @@
   "unique-in-order": {
     "id": -6,
     "name": "6 kyu"
+  },
+  "who-likes-it": {
+    "id": -6,
+    "name": "6 kyu"
   }
 }
