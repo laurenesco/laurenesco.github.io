@@ -118,5 +118,17 @@
   "equal-sides-of-an-array": {
     "id": -6,
     "name": "6 kyu"
+  },
+  "counting-sheep-dot-dot-dot": {
+    "id": -8,
+    "name": "8 kyu"
+  },
+  "counting-duplicates": {
+    "id": -6,
+    "name": "6 kyu"
+  },
+  "list-filtering": {
+    "id": -7,
+    "name": "7 kyu"
   }
 }
