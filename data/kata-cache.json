@@ -146,5 +146,13 @@
   "disguised-sequences-ii": {
     "id": -6,
     "name": "6 kyu"
+  },
+  "sum-of-many-ints": {
+    "id": -6,
+    "name": "6 kyu"
+  },
+  "take-a-ten-minutes-walk": {
+    "id": -6,
+    "name": "6 kyu"
   }
 }
