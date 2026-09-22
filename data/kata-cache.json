@@ -154,5 +154,9 @@
   "take-a-ten-minutes-walk": {
     "id": -6,
     "name": "6 kyu"
+  },
+  "determine-the-date-by-the-day-number": {
+    "id": -6,
+    "name": "6 kyu"
   }
 }
