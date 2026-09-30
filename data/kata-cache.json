@@ -158,5 +158,9 @@
   "determine-the-date-by-the-day-number": {
     "id": -6,
     "name": "6 kyu"
+  },
+  "integer-with-the-longest-collatz-sequence": {
+    "id": -6,
+    "name": "6 kyu"
   }
 }
