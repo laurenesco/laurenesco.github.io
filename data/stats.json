@@ -1,15 +1,9 @@
 {
-  "generatedAt": "2026-09-30T14:19:23.662Z",
+  "generatedAt": "2026-10-01T14:52:20.312Z",
   "goals": {
     "weeklyProblems": 5
   },
   "monthly": [
-    {
-      "month": "2025-10",
-      "codingProblems": 0,
-      "avgKataLevel": "n/a",
-      "avgKataScore": null
-    },
     {
       "month": "2025-11",
       "codingProblems": 0,
@@ -75,6 +69,12 @@
       "codingProblems": 13,
       "avgKataLevel": "6 kyu",
       "avgKataScore": -6.333333333333333
+    },
+    {
+      "month": "2026-10",
+      "codingProblems": 0,
+      "avgKataLevel": "n/a",
+      "avgKataScore": null
     }
   ],
   "currentWeek": {
@@ -1564,6 +1564,10 @@
       },
       {
         "date": "2026-09-30",
+        "contributionCount": 0
+      },
+      {
+        "date": "2026-10-01",
         "contributionCount": 0
       }
     ]
