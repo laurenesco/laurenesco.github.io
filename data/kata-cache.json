@@ -166,5 +166,9 @@
   "parity-bit-error-detecting-code": {
     "id": -6,
     "name": "6 kyu"
+  },
+  "valid-braces": {
+    "id": -6,
+    "name": "6 kyu"
   }
 }
