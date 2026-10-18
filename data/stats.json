@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T11:47:49.955Z",
+  "generatedAt": "2026-10-18T12:13:18.469Z",
   "goals": {
     "weeklyProblems": 5
   },
@@ -78,9 +78,9 @@
     }
   ],
   "currentWeek": {
-    "start": "2026-10-11",
-    "end": "2026-10-17",
-    "total": 1,
+    "start": "2026-10-18",
+    "end": "2026-10-24",
+    "total": 0,
     "goal": 5
   },
   "totals": {
@@ -90,38 +90,10 @@
   },
   "github": {
     "totalContributionsLastYear": 474,
-    "contributionsThisWeek": 1,
+    "contributionsThisWeek": 0,
     "currentStreak": 0,
     "longestStreak": 8,
     "calendar": [
-      {
-        "date": "2025-10-12",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-13",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-14",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-15",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-16",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-17",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-18",
-        "contributionCount": 0
-      },
       {
         "date": "2025-10-19",
         "contributionCount": 0
@@ -1576,6 +1548,10 @@
       },
       {
         "date": "2026-10-17",
+        "contributionCount": 0
+      },
+      {
+        "date": "2026-10-18",
         "contributionCount": 0
       }
     ]
