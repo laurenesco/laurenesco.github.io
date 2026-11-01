@@ -1,15 +1,9 @@
 {
-  "generatedAt": "2026-10-31T13:56:58.158Z",
+  "generatedAt": "2026-11-01T14:34:40.052Z",
   "goals": {
     "weeklyProblems": 5
   },
   "monthly": [
-    {
-      "month": "2025-11",
-      "codingProblems": 0,
-      "avgKataLevel": "n/a",
-      "avgKataScore": null
-    },
     {
       "month": "2025-12",
       "codingProblems": 0,
@@ -75,12 +69,18 @@
       "codingProblems": 7,
       "avgKataLevel": "6 kyu",
       "avgKataScore": -6.333333333333333
+    },
+    {
+      "month": "2026-11",
+      "codingProblems": 0,
+      "avgKataLevel": "n/a",
+      "avgKataScore": null
     }
   ],
   "currentWeek": {
-    "start": "2026-10-25",
-    "end": "2026-10-31",
-    "total": 2,
+    "start": "2026-11-01",
+    "end": "2026-11-07",
+    "total": 0,
     "goal": 5
   },
   "totals": {
@@ -90,38 +90,10 @@
   },
   "github": {
     "totalContributionsLastYear": 488,
-    "contributionsThisWeek": 9,
+    "contributionsThisWeek": 0,
     "currentStreak": 0,
     "longestStreak": 8,
     "calendar": [
-      {
-        "date": "2025-10-26",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-27",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-28",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-29",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-30",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-10-31",
-        "contributionCount": 0
-      },
-      {
-        "date": "2025-11-01",
-        "contributionCount": 0
-      },
       {
         "date": "2025-11-02",
         "contributionCount": 0
@@ -1576,6 +1548,10 @@
       },
       {
         "date": "2026-10-31",
+        "contributionCount": 0
+      },
+      {
+        "date": "2026-11-01",
         "contributionCount": 0
       }
     ]
